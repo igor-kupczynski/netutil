@@ -42,7 +42,7 @@ jobs:
         with:
           push: true
           labels: |
-            org.opencontainers.image.description=Created from commit: ${{ github.sha }}
+            org.opencontainers.image.description=A collection of network utilities\nSee: https://github.com/${{ github.repository }}\nCreated from commit: ${{ github.sha }}
             org.opencontainers.image.revision=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
