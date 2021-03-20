@@ -31,8 +31,7 @@ jobs:
         with:
           push: true
           labels: |
-            org.opencontainers.image.description="Created from commit ${{ github.sha }}"
-            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.description=A collection of network utilities, see: https://github.com/${{ github.repository }}/tree/${{ env.sha }}
           tags: |
             ghcr.io/${{ github.repository }}:${{ env.sha }}
 
@@ -42,7 +41,7 @@ jobs:
         with:
           push: true
           labels: |
-            org.opencontainers.image.description=Created from commit: ${{ github.sha }}
+            org.opencontainers.image.description=A collection of network utilities, see: https://github.com/${{ github.repository }}/tree/${{ env.sha }}
             org.opencontainers.image.revision=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.repository }}:latest
