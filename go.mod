@@ -1,1 +1,3 @@
-module "netutil"
+module github.com/igor-kupczynski/netutil
+
+go 1.15
