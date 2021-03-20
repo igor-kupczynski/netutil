@@ -21,7 +21,6 @@ jobs:
       - name: Set Environment
         run: |
           echo "sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
-          echo "ref=$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match)" >> $GITHUB_ENV
       - name: Build Docker Image [on pull_request]
         uses: docker/build-push-action@v2
         if: github.event == 'pull_request'
@@ -30,7 +29,6 @@ jobs:
           labels: |
             org.opencontainers.image.revision=${{ github.sha }}
           tags: |
-            ghcr.io/${{ github.repository }}:pr-${{ env.ref }}
             ghcr.io/${{ github.repository }}:${{ env.sha }}
       - name: Build and Push Docker Image [on push to master]
         uses: docker/build-push-action@v2
