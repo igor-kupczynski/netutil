@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -21,9 +21,9 @@ jobs:
       - name: Set Environment
         run: |
           echo "sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
-      - name: Build Docker Image [on pull_request]
+      - name: Build and Push Docker Image [on pull_request]
+        if: github.event_name == 'pull_request'
         uses: docker/build-push-action@v2
-        if: github.event == 'pull_request'
         with:
           push: true
           labels: |
@@ -31,8 +31,8 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}:${{ env.sha }}
       - name: Build and Push Docker Image [on push to master]
+        if: github.event_name == 'push'
         uses: docker/build-push-action@v2
-        if: github.event == 'push'
         with:
           push: true
           labels: |
