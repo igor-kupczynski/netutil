@@ -32,5 +32,6 @@ func run(port int) error {
 	})
 
 	addr := fmt.Sprintf(":%d", port)
+	log.Printf("Listening on %s\n", addr)
 	return http.ListenAndServe(addr, nil)
 }
