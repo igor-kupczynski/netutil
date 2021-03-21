@@ -9,5 +9,6 @@ LABEL org.opencontainers.image.authors=https://github.com/igor-kupczynski
 WORKDIR /app
 COPY --from=0 /src/netutil-serve /app/netutil-serve
 RUN apt-get -qq update && \
-	apt-get -qq install iproute2  # for ip command
+	apt-get -qq install iproute2 && \  # for ip command
+	apt-get -qq install curl
 ENTRYPOINT ["/app/netutil-serve"]
